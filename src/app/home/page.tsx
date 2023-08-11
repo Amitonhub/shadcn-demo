@@ -1,93 +1,72 @@
 'use client'
-import { useLayoutEffect, useState } from "react";
+import DashboardNavigation from "@/components/DashboardNavigation";
+import MenubarCustom from "@/components/MenubarCustom";
 import { useGlobalContext } from "../context/store";
 import { useRouter } from "next/navigation";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { globalAgentList } from "../../utils/GlobalAgentsList";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DEFAULTAVATAR, EDIT } from "@/constants";
-import AgentForm from "@/components/AgentForm";
-import { IAgent } from "./types";
-
+import { useLayoutEffect } from "react";
+import DoughnutChart from "@/components/Chart";
+import CardCustom from "@/components/CardCustom";
+import MonthlyCard from "@/components/MonthlyCard";
+import EarningReportsCard from "@/components/EarningReportsCard";
+import { NotificationCard } from "@/components/NotificationsCard";
 
 function HomePage() {
   const { username, isLogin, setIsLogin, setUsername } = useGlobalContext()
-  const [agentList, setAgentList] = useState(globalAgentList);
   const router = useRouter()
   useLayoutEffect(() => {
-    if (!isLogin) {
+    if (isLogin) {
+      router.push('/home')
+    } else {
       router.push('/')
     }
   }, [isLogin, router])
-
-  function create(data: IAgent) {
-    const id = crypto.randomUUID();
-    const avatarUrl = DEFAULTAVATAR;
-    const agent = { ...data, id, avatarUrl };
-    setAgentList([...agentList, agent]);
-  }
-
-  function edit(data: IAgent) {
-    const index = agentList.findIndex((agent) => agent.id === data.id);
-    agentList[index] = { ...agentList[index], ...data };
-    setAgentList([...agentList]);
-  }
-
-  function agentHandler(data: any) {
-    const isEdit = data.id !== undefined;
-    if (isEdit) {
-      edit(data);
-    } else {
-      create(data);
-    }
-  }
-
-    return <>
-      <div className="w-full">
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Avatar</TableHead>
-              <TableHead>Id</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="flex justify-end items-center">Modify</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {agentList.map((agent) => (
-              <TableRow key={agent.id}>
-                <TableCell>
-                  <Avatar>
-                    <AvatarImage src={agent.avatarUrl} />
-                    <AvatarFallback>{agent.name}</AvatarFallback>
-                  </Avatar>
-                </TableCell>
-                <TableCell>{agent.id}</TableCell>
-                <TableCell>{agent.name}</TableCell>
-                <TableCell>{agent.status}</TableCell>
-                <TableCell className="text-right">
-                  <AgentForm
-                    buttonText={EDIT}
-                    isEdit={true}
-                    agent={agent}
-                    onAgentHandler={agentHandler}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+  return (
+    <>
+      <div className="w-4/5 mx-4">
+        <div className="flex justify-between items-center mb-2">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Dashboard
+          </h1>
+          <MenubarCustom />
+        </div>
+        <div className="mb-2">
+          <DashboardNavigation />
+        </div>
+        <div>
+          <div className="flex w-3/3 justify-end">
+            <div className="flex gap-11">
+              <CardCustom
+                cardTitle="Total Earning"
+                cardDiscription="earnings all time"
+                cardContent="19.280"
+                cardFooter="150 orders"
+              />
+              <CardCustom
+                cardTitle="Total Spending"
+                cardDiscription="spendings all time"
+                cardContent="10.534"
+                cardFooter="130 orders"
+              />
+            </div>
+            <div className="w-1/3 pl-2 grid gap-5">
+              <EarningReportsCard
+                cardTitle="Earning Reports"
+                cardDiscription="total orders"
+                cardContent="380K"
+                cardFooter="5.480 orders"
+              />
+              <div>
+                <NotificationCard/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex h-72 w-2/3 relative bottom-72">
+          <MonthlyCard />
+        </div>
       </div>
-    </>;
-  }
+
+    </>
+  )
+}
 export default HomePage;

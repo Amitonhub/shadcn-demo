@@ -9,3 +9,11 @@ export type IAgent = {
     status: "Online" | "Offline",
     avatarUrl: string,
 }
+
+export type ICardProps = {
+    cardTitle: string,
+    cardDiscription: string,
+    cardContent: string,
+    cardFooter: string
+
+}

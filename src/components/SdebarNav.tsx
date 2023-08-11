@@ -15,23 +15,25 @@ function SidebarNav({ className, items }: SidebarNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={cn("flex flex-col space-x-0 space-y-1")}>
-      {items.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={cn(
-            buttonVariants({ variant: "ghost" }),
-            pathname === item.href
-              ? "bg-muted hover:bg-muted"
-              : "hover:bg-transparente",
-            "justify-start"
-          )}
-        >
-          {item.title}
-        </Link>
-      ))}
-    </nav>
+    <>
+      <nav className={cn("flex flex-col space-x-0 space-y-1")}>
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              pathname === item.href
+                ? "bg-muted hover:bg-muted"
+                : "hover:bg-transparente",
+              "justify-start"
+            )}
+          >
+            {item.title}
+          </Link>
+        ))}
+      </nav>
+    </>
   );
 }
 

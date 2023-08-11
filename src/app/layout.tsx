@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='m-7'>
+    <html lang="en" className='mx-7 overflow-hidden'>
       <body className={`${inter.className}`}>
         <GlobalContextProvider>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
