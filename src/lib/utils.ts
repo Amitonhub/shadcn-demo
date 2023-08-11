@@ -7,24 +7,33 @@ export function cn(...inputs: ClassValue[]) {
 
 // Set item in local storage
 export const setItem = (key: string, value: any): void => {
-  localStorage.setItem(key, JSON.stringify(value));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 };
 
 // Get item from local storage
 export const getItem = <T>(key: string): T | null => {
+  if (typeof window !== 'undefined') {
   const item = localStorage.getItem(key);
-  if (item) {
-    return JSON.parse(item) as T;
+    if (item) {
+      return JSON.parse(item) as T;
+    }
   }
-  return null;
+    return null;
 };
 
 // Remove item from local storage
 export const removeItem = (key: string): void => {
-  localStorage.removeItem(key);
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(key);
+  }
+
 };
 
 // Clear all items from local storage
 export const clear = (): void => {
-  localStorage.clear();
+  if (typeof window !== 'undefined') {
+    localStorage.clear();
+  }
 };
