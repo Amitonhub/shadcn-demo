@@ -1,0 +1,38 @@
+.monthlyCanvas{
+    height: 210px !important;
+    width: 210px !important;
+}
+
+@media(max-width: 1497px){
+ .mainDiv{
+    position: relative;
+    bottom: 27px;
+}
+.monthlyDiv{
+    position: relative;
+    bottom: 303px;
+    width: 71.666667%;
+    height: 304px;
+} 
+.generateButton{
+    top: 32px;
+    position: relative;
+    margin: 0 !important;
+
+}
+.filterForm{
+    position: relative;
+}
+.cardDiv{
+    height: 257px;
+}
+.monthlyCanvas{
+    height: 200px !important;
+    width: 200px !important;
+}
+}
+@media(max-width: 1497px){
+    .twoCardsDiv{
+        gap: 10px;
+    }
+}

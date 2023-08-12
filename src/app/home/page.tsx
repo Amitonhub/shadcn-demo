@@ -9,6 +9,7 @@ import CardCustom from "@/components/CardCustom";
 import MonthlyCard from "@/components/MonthlyCard";
 import EarningReportsCard from "@/components/EarningReportsCard";
 import { NotificationCard } from "@/components/NotificationsCard";
+import './home.css'
 
 function HomePage() {
   const { username, isLogin, setIsLogin, setUsername } = useGlobalContext()
@@ -22,7 +23,7 @@ function HomePage() {
   }, [isLogin, router])
   return (
     <>
-      <div className="w-4/5 mx-4">
+      <div className="w-4/5 mx-4 mainDiv">
         <div className="flex justify-between items-center mb-2">
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             Dashboard
@@ -34,7 +35,7 @@ function HomePage() {
         </div>
         <div>
           <div className="flex w-3/3 justify-end">
-            <div className="flex gap-11">
+            <div className="flex gap-11 twoCardsDiv">
               <CardCustom
                 cardTitle="Total Earning"
                 cardDiscription="earnings all time"
@@ -49,19 +50,14 @@ function HomePage() {
               />
             </div>
             <div className="w-1/3 pl-2 grid gap-5">
-              <EarningReportsCard
-                cardTitle="Earning Reports"
-                cardDiscription="total orders"
-                cardContent="380K"
-                cardFooter="5.480 orders"
-              />
+              <EarningReportsCard />
               <div>
                 <NotificationCard/>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex h-72 w-2/3 relative bottom-72">
+        <div className="flex h-72 w-2/3 relative bottom-72 monthlyDiv">
           <MonthlyCard />
         </div>
       </div>

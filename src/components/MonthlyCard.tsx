@@ -16,9 +16,9 @@ function MonthlyCard() {
                 <CardTitle>Monthly Activity</CardTitle>
                 <div className="flex gap-3">
                 <CardDescription>
-                    Card Description
+                    months : 12
                     </CardDescription>
-                <CardDescription>Card Description</CardDescription>
+                <CardDescription>year : 2023</CardDescription>
                 </div>
             </CardHeader>
             <div className="flex h-72 justify-center w-full">

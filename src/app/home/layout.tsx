@@ -6,6 +6,7 @@ import UserDropdown from '@/components/UserDropdown'
 import { ModeToggle } from '@/components/ModeToggle'
 import { sidebarNavItems } from '../../utils/SidebarItems'
 import Navbar from '@/components/Navbar'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function HomeLayout({
           <SidebarNav items={sidebarNavItems} />
         </div>
         {children}
+        <Toaster />
       </div>
     </>
   )

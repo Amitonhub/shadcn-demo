@@ -14,7 +14,7 @@ import DoughnutChart from "./Chart";
 function CardCustom(props: ICardProps) {
     return <>
         <div>
-            <Card className="1/3 w-full h-56">
+            <Card className="1/3 w-full h-56 cardDiv">
                 <div className="flex">
                     <div className="w-1/2">
                     <CardHeader className="w-max">

@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { useGlobalContext } from "@/app/context/store";
 import { SUBMIT } from '../constants'
 import Loader from "./Loader";
+import { toast } from "./ui/use-toast";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -49,9 +50,15 @@ function UserAuthForm() {
     setTimeout(() => {
       setUsername(values.username)
       setIsLogin(true)
+      toast({
+        variant: "default",
+        title: "Logged in successful",
+        description: `${new Date()}`,
+        duration: 2000
+      })
       console.log(values)
       router.push('/home')
-    }, 1000)
+    })
   }
   return <>
     <Form {...form}>

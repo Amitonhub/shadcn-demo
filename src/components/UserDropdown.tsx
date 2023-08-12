@@ -15,18 +15,24 @@ import { removeItem } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DEFAULTAVATAR } from "@/constants";
 import { useRouter } from "next/navigation";
+import { toast } from "./ui/use-toast";
 
 function UserDropdown() {
     const {username, isLogin, setIsLogin, setUsername } = useGlobalContext()
     const router = useRouter()
 
     const Logout = (() => {
-        if (typeof window !== 'undefined') {
             setIsLogin(false)
             setUsername('')
+            toast({
+              variant: "default",
+              title: "Logged out successful",
+              description: `${new Date()}`,
+              duration: 2000
+            })
             removeItem('isLogin')
             removeItem('username')
-          }
+            router.push('/')
     })
 
     const Settings = (() => {

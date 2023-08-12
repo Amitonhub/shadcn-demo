@@ -30,5 +30,5 @@ export const data = {
 };
 
 export function MonthlyChart() {
-  return <PolarArea className='flex !h-64 !w-64' data={data} />;
+  return <PolarArea className='flex !h-64 !w-64 monthlyCanvas' data={data} />;
 }

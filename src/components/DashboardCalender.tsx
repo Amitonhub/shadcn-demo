@@ -26,7 +26,7 @@ import {
 import { toast } from "@/components/ui/use-toast"
 
 const FormSchema = z.object({
-  dob: z.date({
+  date: z.date({
   }),
 })
 
@@ -37,7 +37,7 @@ export function CalendarDashboard() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
-      title: "You submitted the following values:",
+      title: "The Repost will generate for :",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -48,13 +48,12 @@ export function CalendarDashboard() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 filterForm">
         <FormField
           control={form.control}
-          name="dob"
+          name="date"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Choose Date</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -93,7 +92,7 @@ export function CalendarDashboard() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled>Generate</Button>
+        <Button className="generateButton" type="submit" >Generate</Button>
       </form>
     </Form>
   )
